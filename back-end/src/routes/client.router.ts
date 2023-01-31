@@ -1,8 +1,10 @@
 import { Router } from "express";
 import createClientController from "../controllers/client/createClient.controller";
+import createSessionController from "../controllers/client/createSession.controller";
 
-const userRoutes = Router();
+const clientRoutes = Router();
 
-userRoutes.post("/client", createClientController);
+clientRoutes.post("/client", createClientController);
+clientRoutes.post("/login", createSessionController);
 
-export default userRoutes;
+export default clientRoutes;

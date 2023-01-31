@@ -1,5 +1,7 @@
 import { Exclude } from "class-transformer";
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Contact } from "./contact.entity";
+import { v4 as uuid } from "uuid";
 
 @Entity("client")
 class Client {
@@ -16,16 +18,20 @@ class Client {
   @Exclude()
   password: string;
 
-  @Column({ nullable: true })
+  @Column({ length: 14, unique: true })
   telephone: string;
 
   @Column()
   registration_date: Date;
 
-  //@OneToMany((type) => Project, (projects) => projects.user, {
-  //  eager: true,
-  //})
-  //project: Project;
+  @OneToMany(() => Contact, (contact) => contact.client)
+  contacts: Contact[];
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }
 
 export { Client };
