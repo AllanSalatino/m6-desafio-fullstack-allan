@@ -7,6 +7,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.9.0",
     "reflect-metadata": "^0.1.13",
@@ -16,9 +17,16 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.16",
     "@types/jsonwebtoken": "^9.0.1",
+    "@types/pg": "^8.6.6",
     "sqlite3": "^5.1.4",
     "ts-jest": "^29.0.5",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --ignore-watch node_modules src/app.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "build": "tsc",
+    "test": "cross-env NODE_ENV=test SECRET_KEY=1234 jest"
   }
 }
