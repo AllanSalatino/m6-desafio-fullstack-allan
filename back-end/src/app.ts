@@ -1,13 +1,13 @@
 import "reflect-metadata";
-import { startDatabase } from "./database";
 import express from "express";
 import "express-async-errors";
+import userRoutes from "./routes/client.router";
+import { handleErrorMidleware } from "./middlewares/handleError.middleware";
 
 const app = express();
 
 app.use(express.json());
+app.use("/api", userRoutes);
+app.use(handleErrorMidleware);
 
-app.listen(3000, () => {
-  console.log("Listen in port 3000");
-  startDatabase();
-});
+export default app;
