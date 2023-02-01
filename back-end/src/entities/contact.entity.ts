@@ -22,7 +22,9 @@ class Contact {
   @Column()
   clientId: string;
 
-  @ManyToOne(() => Client)
+  @ManyToOne(() => Client, (client) => client.contacts, {
+    onDelete: "CASCADE",
+  })
   client: Client;
 
   constructor() {
