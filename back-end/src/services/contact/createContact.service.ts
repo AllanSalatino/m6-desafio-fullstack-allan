@@ -8,15 +8,15 @@ const createContactService = async (
   id: string
 ) => {
   if (!name) {
-    throw new AppError("name is a field required");
+    throw new AppError("Name is a field required");
   }
 
   if (!email) {
-    throw new AppError("email is a field required");
+    throw new AppError("Email is a field required");
   }
 
   if (!telephone) {
-    throw new AppError("telephone is a field required");
+    throw new AppError("Telephone is a field required");
   }
 
   const contactRepository = AppDataSource.getRepository(Contact);

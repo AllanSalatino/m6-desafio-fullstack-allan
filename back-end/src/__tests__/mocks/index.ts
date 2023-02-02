@@ -12,9 +12,40 @@ export const mockedClient: IClientRequest = {
   password: "1234",
 };
 
+export const mockedClient2: IClientRequest = {
+  name: "Jorge da Mota Salatino",
+  email: "jorge.smota@gmail.com",
+  telephone: "11933895918",
+  password: "1234",
+};
+
+export const mockedClient3: IClientRequest = {
+  name: "João da Mota Salatino",
+  email: "joao.smota@gmail.com",
+  telephone: "11933895910",
+  password: "1234",
+};
+
+export const mockedClientErrorTelephoneExist: IClientRequest = {
+  name: "Allan da Mota Salatino",
+  email: "allan1.smota@gmail.com",
+  telephone: "11933895916",
+  password: "1234",
+};
+
 // Logar com sucesso
 export const mockedLogin: IClientLogin = {
   email: "allan.smota@gmail.com",
+  password: "1234",
+};
+
+export const mockedLogin2: IClientLogin = {
+  email: "jorge.smota@gmail.com",
+  password: "1234",
+};
+
+export const mockedLogin3: IClientLogin = {
+  email: "joao.smota@gmail.com",
   password: "1234",
 };
 
@@ -107,21 +138,18 @@ export const mockedContact: IContactRequest = {
 export const mockedContactErrorName: any = {
   email: "allan1.smota@gmail.com",
   telephone: "11933895917",
-  password: "1234",
 };
 
 // Email é um campo obrigatorio
 export const mockedContactErrorEmail: any = {
   name: "Allan da Mota Salatino",
   telephone: "11933895917",
-  password: "1234",
 };
 
 // Telefone é um campo obrigatorio
-export const mockedContectErrorTelephone: any = {
+export const mockedContactErrorTelephone: any = {
   name: "Allan da Mota Salatino",
   email: "allan1.smota@gmail.com",
-  password: "1234",
 };
 
 // Nome atualizado com sucesso

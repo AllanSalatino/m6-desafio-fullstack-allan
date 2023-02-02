@@ -11,7 +11,7 @@ const updateClientService = async (data: any, id: string) => {
   }
 
   if (data.id) {
-    throw new AppError("id is read only");
+    throw new AppError("ID is read only");
   }
 
   await clientRepository.update(id, data);

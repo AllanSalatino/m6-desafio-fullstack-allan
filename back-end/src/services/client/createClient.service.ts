@@ -11,26 +11,32 @@ const createClientService = async ({
   telephone,
 }: IClientRequest) => {
   if (!name) {
-    throw new AppError("name is a field required");
+    throw new AppError("Name is a field required");
   }
 
   if (!email) {
-    throw new AppError("email is a field required");
+    throw new AppError("Email is a field required");
   }
 
   if (!telephone) {
-    throw new AppError("telephone is a field required");
+    throw new AppError("Telephone is a field required");
   }
 
   if (!password) {
-    throw new AppError("password is a field required");
+    throw new AppError("Password is a field required");
   }
 
   const clientRepository = AppDataSource.getRepository(Client);
   const emailAlreadyExists = await clientRepository.findOneBy({ email: email });
+  const telephoneAlreadyExists = await clientRepository.findOneBy({
+    telephone: telephone,
+  });
 
   if (emailAlreadyExists) {
-    throw new AppError("Email already exists", 400);
+    throw new AppError("Email already exists");
+  }
+  if (telephoneAlreadyExists) {
+    throw new AppError("Telephone already exists");
   }
 
   const hashedPassword = await hash(password, 10);

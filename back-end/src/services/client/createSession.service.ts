@@ -12,6 +12,13 @@ const createSessionService = async ({
 }: IClientLogin): Promise<string> => {
   const clientRepository = AppDataSource.getRepository(Client);
 
+  if (!email) {
+    throw new AppError("Email is a field required");
+  }
+  if (!password) {
+    throw new AppError("Password is a field required");
+  }
+
   const client = await clientRepository.findOneBy({
     email: email,
   });
