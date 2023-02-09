@@ -9,7 +9,7 @@ import { AppError } from "../../errors";
 const createSessionService = async ({
   email,
   password,
-}: IClientLogin): Promise<string> => {
+}: IClientLogin): Promise<string[]> => {
   const clientRepository = AppDataSource.getRepository(Client);
 
   if (!email) {
@@ -44,7 +44,7 @@ const createSessionService = async ({
     }
   );
 
-  return token;
+  return [token, client.id];
 };
 
 export default createSessionService;

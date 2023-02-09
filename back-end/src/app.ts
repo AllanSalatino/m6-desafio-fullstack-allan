@@ -8,12 +8,9 @@ import contactRoutes from "./routes/contact.router";
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  app.use(cors());
-  next();
-});
 
 app.use("/api", clientRoutes);
 app.use("/api", contactRoutes);
