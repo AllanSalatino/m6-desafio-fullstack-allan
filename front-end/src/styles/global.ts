@@ -72,6 +72,9 @@ const GlobalStyle = createGlobalStyle`
 			display: block;
 		}
 		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 			line-height: 1;
 			overflow-x: hidden;
 		}

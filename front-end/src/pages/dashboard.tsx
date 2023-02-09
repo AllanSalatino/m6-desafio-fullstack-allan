@@ -1,16 +1,13 @@
-import { useContext } from "react";
 import FormLogin from "../components/FormLogin";
 import FormRegister from "../components/FormRegister";
-import { AuthContext } from "../contexts/AuthContext";
+import { MainTag } from "./style";
 
 const Dashboard = () => {
-  const { logOut } = useContext(AuthContext);
   return (
-    <main>
+    <MainTag>
       <FormLogin />
       <FormRegister />
-      <button onClick={() => logOut()}>Sair</button>
-    </main>
+    </MainTag>
   );
 };
 

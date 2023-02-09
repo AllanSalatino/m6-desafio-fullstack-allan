@@ -8,6 +8,12 @@ import {
 } from "react";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import {
+  LoginError,
+  LoginSucess,
+  RegisterError,
+  RegisterSucess,
+} from "../../ToastContainer";
 
 interface IClientProviders {
   children: ReactNode;
@@ -60,12 +66,12 @@ export function AuthProvider({ children }: IClientProviders) {
         localStorage.setItem("@token", response.data.token);
         localStorage.setItem("@id", response.data.id);
         setClient(response.data);
-        setTimeout(() => {
-          loadClient();
-        }, 1000);
+        loadClient();
+        LoginSucess();
       })
       .catch((er) => {
         console.error(er);
+        LoginError();
       });
   };
   const onSubmitRegister = (data: IRegister) => {
@@ -74,12 +80,14 @@ export function AuthProvider({ children }: IClientProviders) {
       .then((res) => {
         if (res.data) {
           setTimeout(() => {
-            console.log("sucesso!");
+            console.log("Cadastro realizado com sucesso!");
+            RegisterSucess();
           }, 1000);
         }
       })
       .catch((er) => {
         console.error(er);
+        RegisterError();
       });
   };
 
@@ -102,7 +110,7 @@ export function AuthProvider({ children }: IClientProviders) {
 
   useEffect(() => {
     loadClient();
-  });
+  }, []);
 
   const logOut = () => {
     localStorage.removeItem("@token");

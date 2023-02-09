@@ -5,7 +5,7 @@ const Client = () => {
   const { logOut, client } = useContext(AuthContext);
   return (
     <main>
-      <h1>Área d cliente</h1>
+      <h1>Área do cliente</h1>
       <div>
         <h2>Cliente: {client?.name}</h2>
         <p>Email: {client?.email}</p>
