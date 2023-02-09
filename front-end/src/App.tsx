@@ -1,10 +1,9 @@
-import FormLogin from "./components/FormLogin";
-import Dashboard from "./pages/dashboard";
+import { PageRoutes } from "./routes";
 
 function App() {
   return (
     <div className="App">
-      <Dashboard />
+      <PageRoutes />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import {
   useEffect,
 } from "react";
 import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface IClientProviders {
   children: ReactNode;
@@ -50,15 +51,18 @@ export const AuthContext = createContext<IClientContext>({} as IClientContext);
 
 export function AuthProvider({ children }: IClientProviders) {
   const [client, setClient] = useState<null | IClient>(null);
+  const navigate = useNavigate();
 
   const onSubmitLogin = (data: ILogin) => {
     api
       .post("/login", data)
       .then((response) => {
-        localStorage.setItem("@token", response.data.accessToken);
-        localStorage.setItem("@id", response.data.client.id);
-        setClient(response.data.client);
-        setTimeout(() => {}, 3000);
+        localStorage.setItem("@token", response.data.token);
+        localStorage.setItem("@id", response.data.id);
+        setClient(response.data);
+        setTimeout(() => {
+          loadClient();
+        }, 1000);
       })
       .catch((er) => {
         console.error(er);
@@ -69,7 +73,9 @@ export function AuthProvider({ children }: IClientProviders) {
       .post<IRegisterResponse>("/client", data)
       .then((res) => {
         if (res.data) {
-          setTimeout(() => {}, 3000);
+          setTimeout(() => {
+            console.log("sucesso!");
+          }, 1000);
         }
       })
       .catch((er) => {
@@ -77,27 +83,32 @@ export function AuthProvider({ children }: IClientProviders) {
       });
   };
 
-  useEffect(() => {
-    const loadClient = async () => {
-      const tokenResponse = localStorage.getItem("@token");
-      const idResponse = localStorage.getItem("@id");
+  const loadClient = async () => {
+    const tokenResponse = localStorage.getItem("@token");
+    const idResponse = localStorage.getItem("@id");
 
-      if (tokenResponse) {
-        try {
-          const { data } = await api.get(`/client/${idResponse}`);
+    if (tokenResponse) {
+      try {
+        api.defaults.headers.authorization = `Bearer ${tokenResponse}`;
+        const { data } = await api.get(`/client/${idResponse}`);
 
-          setClient(data);
-        } catch (er) {
-          console.error(er);
-        }
+        setClient(data);
+        navigate("/client");
+      } catch (er) {
+        console.error(er);
       }
-    };
+    }
+  };
+
+  useEffect(() => {
     loadClient();
-  }, []);
+  });
 
   const logOut = () => {
     localStorage.removeItem("@token");
-    window.location.reload();
+    localStorage.removeItem("@id");
+
+    navigate("/");
   };
 
   return (
