@@ -26,6 +26,7 @@ const FormLogin = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmitLogin)}>
+      <h2>Login</h2>
       <div>
         <h3>Email:</h3>
         <Input
@@ -34,7 +35,7 @@ const FormLogin = () => {
           required
           {...register("email")}
         />
-        {errors.email?.message}
+        <span>{errors.email?.message}</span>
       </div>
       <div>
         <h3>Password:</h3>
@@ -44,7 +45,7 @@ const FormLogin = () => {
           required
           {...register("password")}
         />
-        {errors.email?.message}
+        <span>{errors.password?.message}</span>
       </div>
       <button type="submit">Entrar</button>
     </Form>

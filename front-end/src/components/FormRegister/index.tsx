@@ -29,6 +29,8 @@ const FormRegister = () => {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmitRegister)}>
+        <h2>Cadastro</h2>
+
         <div>
           <h3>Nome:</h3>
           <Input
@@ -37,7 +39,7 @@ const FormRegister = () => {
             required
             {...register("name")}
           />
-          {errors.name?.message}
+          <span>{errors.name?.message}</span>
         </div>
         <div>
           <h3>Email:</h3>
@@ -47,7 +49,7 @@ const FormRegister = () => {
             required
             {...register("email")}
           />
-          {errors.email?.message}
+          <span>{errors.email?.message}</span>
         </div>
         <div>
           <h3>Password:</h3>
@@ -57,7 +59,7 @@ const FormRegister = () => {
             required
             {...register("password")}
           />
-          {errors.password?.message}
+          <span>{errors.password?.message}</span>
         </div>
         <div>
           <h3>Telefone:</h3>
@@ -67,7 +69,7 @@ const FormRegister = () => {
             required
             {...register("telephone")}
           />
-          {errors.telephone?.message}
+          <span>{errors.telephone?.message}</span>
         </div>
         <button type="submit">Cadastrar</button>
       </Form>
