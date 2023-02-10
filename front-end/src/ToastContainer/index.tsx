@@ -1,24 +1,6 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const creationError = () => {
-  toast.error("Error", {
-    autoClose: 2000,
-    closeOnClick: false,
-    pauseOnHover: false,
-    draggable: false,
-  });
-};
-
-export const creationSucess = () => {
-  toast.success("sucess", {
-    autoClose: 2000,
-    closeOnClick: false,
-    pauseOnHover: false,
-    draggable: false,
-  });
-};
-
 export const LoginError = () => {
   toast.error("Email ou senha incorretos!", {
     position: "top-right",
@@ -73,7 +55,7 @@ export const ContactAdd = () => {
   });
 };
 export const ContactAddNegative = () => {
-  toast.error("Falha ao adicionar produto!", {
+  toast.error("Falha ao adicionar contato!", {
     position: "top-right",
     hideProgressBar: false,
     autoClose: 2000,
@@ -84,7 +66,7 @@ export const ContactAddNegative = () => {
 };
 
 export const EditContactSuccess = () => {
-  toast.success("Produto editado!", {
+  toast.success("Contato editado!", {
     position: "top-right",
     hideProgressBar: false,
     autoClose: 2000,
@@ -93,8 +75,9 @@ export const EditContactSuccess = () => {
     draggable: false,
   });
 };
+
 export const EditContactError = () => {
-  toast.error("Falha ao editar produto!", {
+  toast.error("Falha ao editar contato!", {
     position: "top-right",
     hideProgressBar: false,
     autoClose: 2000,
@@ -103,8 +86,42 @@ export const EditContactError = () => {
     draggable: false,
   });
 };
+
+export const EditClientSuccess = () => {
+  toast.success("Cliente editado!", {
+    position: "top-right",
+    hideProgressBar: false,
+    autoClose: 2000,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: false,
+  });
+};
+
+export const EditClientError = () => {
+  toast.error("Falha ao editar cliente!", {
+    position: "top-right",
+    hideProgressBar: false,
+    autoClose: 2000,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: false,
+  });
+};
+
 export const deleteContactSuccess = () => {
-  toast.success("Produto excluido!", {
+  toast.success("Contato excluido!", {
+    position: "top-right",
+    hideProgressBar: false,
+    autoClose: 2000,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: false,
+  });
+};
+
+export const deleteClientSuccess = () => {
+  toast.success("Cliente excluido!", {
     position: "top-right",
     hideProgressBar: false,
     autoClose: 2000,

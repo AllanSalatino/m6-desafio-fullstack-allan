@@ -18,6 +18,9 @@ import {
   RegisterSucess,
   EditContactError,
   EditContactSuccess,
+  EditClientError,
+  EditClientSuccess,
+  deleteClientSuccess,
 } from "../../ToastContainer";
 
 interface IClientProviders {
@@ -40,15 +43,23 @@ interface IClientContext {
   loadContacts: () => Promise<void>;
   onSubmitContactEdit: (data: IContactRequired) => Promise<void>;
   deleteContact: (id: string) => Promise<void>;
+  onSubmitClientEdit: (data: IClientResquest) => Promise<void>;
+  deleteClient: (id: string) => Promise<void>;
 }
 
 export interface IClient {
-  id: number;
+  id: string;
   name: string;
   email: string;
   password: string;
   telephone: string;
-  registration_date: Date;
+  registration_date: string;
+}
+
+export interface IClientResquest {
+  name: string;
+  email: string;
+  telephone: string;
 }
 
 export interface ILogin {
@@ -116,7 +127,7 @@ export function AuthProvider({ children }: IClientProviders) {
           setTimeout(() => {
             console.log("Cadastro realizado com sucesso!");
             RegisterSucess();
-          }, 1000);
+          }, 3000);
         }
       })
       .catch((er) => {
@@ -133,7 +144,7 @@ export function AuthProvider({ children }: IClientProviders) {
           setTimeout(() => {
             console.log("Contato adicionado com sucesso!");
             ContactAdd();
-          }, 1000);
+          }, 3000);
         }
       })
       .catch((er) => {
@@ -161,12 +172,41 @@ export function AuthProvider({ children }: IClientProviders) {
               setTimeout(() => {
                 console.log("Contato atualizado com sucesso!");
                 EditContactSuccess();
-              }, 1000);
+              }, 3000);
             }
           });
       } catch (er) {
         console.error(er);
         EditContactError();
+      }
+    }
+  };
+
+  const onSubmitClientEdit = async (data: IClientResquest) => {
+    const tokenResponse = localStorage.getItem("@token");
+
+    let dataUpdate: IClientResquest = {
+      name: data.name ? data.name : client!.name,
+      email: data.email ? data.email : client!.email,
+      telephone: data.telephone ? data.telephone : client!.telephone,
+    };
+
+    if (tokenResponse) {
+      try {
+        api.defaults.headers.authorization = `Bearer ${tokenResponse}`;
+        api
+          .patch<IContactResponse>(`/client/${client?.id}`, dataUpdate)
+          .then((res) => {
+            if (res.data) {
+              setTimeout(() => {
+                console.log("Client atualizado com sucesso!");
+                EditClientSuccess();
+              }, 3000);
+            }
+          });
+      } catch (er) {
+        console.error(er);
+        EditClientError();
       }
     }
   };
@@ -229,6 +269,21 @@ export function AuthProvider({ children }: IClientProviders) {
     }
   };
 
+  const deleteClient = async (id: string) => {
+    const tokenResponse = localStorage.getItem("@token");
+
+    if (tokenResponse) {
+      try {
+        api.defaults.headers.authorization = `Bearer ${tokenResponse}`;
+        await api.delete(`/client/${id}`);
+        deleteClientSuccess();
+        logOut();
+      } catch (er) {
+        console.error(er);
+      }
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -247,6 +302,8 @@ export function AuthProvider({ children }: IClientProviders) {
         deleteContact,
         onlyOneContact,
         setOnlyOneContact,
+        onSubmitClientEdit,
+        deleteClient,
       }}
     >
       {children}

@@ -55,12 +55,18 @@ export const MainClient = styled("main")`
         display: flex;
         flex-direction: column;
         gap: 10px;
-        & > button {
-          background-color: red;
-          padding: 10px 20px;
-          color: white;
-          font-weight: 700;
-          margin-bottom: 25px;
+
+        & > div {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+
+          & > button {
+            padding: 7px 10px;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 25px;
+          }
         }
       }
     }

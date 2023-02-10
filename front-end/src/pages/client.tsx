@@ -1,4 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import FormClienttEdit from "../components/FormClientEdit";
 import FormContact from "../components/FormContact";
 import FormContactEdit from "../components/FormContactEdit";
 import { AuthContext, IContactResponse } from "../contexts/AuthContext";
@@ -11,9 +13,30 @@ const Client = () => {
     setIdContact,
     deleteContact,
     setOnlyOneContact,
+    deleteClient,
   } = useContext(AuthContext);
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isUpdate, setIsUpdate] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+
+  const SelectForm = () => {
+    if (isUpdate) {
+      return <FormClienttEdit />;
+    } else if (isEdit) {
+      return <FormContactEdit />;
+    } else {
+      return <FormContact />;
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("@token");
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <MainClient>
@@ -24,9 +47,31 @@ const Client = () => {
             <h2>Cliente: {client?.name}</h2>
             <p>Email: {client?.email}</p>
             <span>Telefone: {client?.telephone}</span>
-            <button onClick={() => logOut()}>Sair</button>
+            <div>
+              <button
+                style={{ backgroundColor: "orange" }}
+                onClick={() => logOut()}
+              >
+                Sair
+              </button>
+              <button
+                style={{ backgroundColor: "grey" }}
+                onClick={() => {
+                  setIsUpdate(true);
+                  setIsEdit(false);
+                }}
+              >
+                Editar
+              </button>
+              <button
+                style={{ backgroundColor: "red" }}
+                onClick={() => deleteClient(client!.id)}
+              >
+                Delete usuário
+              </button>
+            </div>
           </div>
-          {isEdit ? <FormContactEdit /> : <FormContact />}
+          {SelectForm()}
         </aside>
         <ul>
           <h2>Lista de contatos</h2>

@@ -5,8 +5,8 @@ import { AuthContext, IContactRequired } from "../../contexts/AuthContext";
 import { Form, Input } from "../../styles/Forms";
 import { useContext, useEffect, useState } from "react";
 
-const FormContactEdit = () => {
-  const { onSubmitContactEdit, onlyOneContact } = useContext(AuthContext);
+const FormClienttEdit = () => {
+  const { onSubmitClientEdit, client } = useContext(AuthContext);
   const [handleName, setHandleName] = useState<string | undefined>();
   const [handleEmail, setHandleEmail] = useState<string | undefined>();
   const [handleTelephone, setHandleTelephone] = useState<string | undefined>();
@@ -22,9 +22,9 @@ const FormContactEdit = () => {
   };
 
   useEffect(() => {
-    setHandleName(onlyOneContact?.name);
-    setHandleEmail(onlyOneContact?.email);
-    setHandleTelephone(onlyOneContact?.telephone);
+    setHandleName(client?.name);
+    setHandleEmail(client?.email);
+    setHandleTelephone(client?.telephone);
   }, []);
 
   const Schema = yup.object().shape({
@@ -43,8 +43,8 @@ const FormContactEdit = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmitContactEdit)}>
-        <h2>Atualizar contato</h2>
+      <Form onSubmit={handleSubmit(onSubmitClientEdit)}>
+        <h2>Atualizar Perfil</h2>
 
         <div>
           <h3>Nome:</h3>
@@ -87,4 +87,4 @@ const FormContactEdit = () => {
   );
 };
 
-export default FormContactEdit;
+export default FormClienttEdit;
