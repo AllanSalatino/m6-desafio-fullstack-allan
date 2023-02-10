@@ -124,10 +124,7 @@ export function AuthProvider({ children }: IClientProviders) {
       .post<IRegisterResponse>("/client", data)
       .then((res) => {
         if (res.data) {
-          setTimeout(() => {
-            console.log("Cadastro realizado com sucesso!");
-            RegisterSucess();
-          }, 3000);
+          RegisterSucess();
         }
       })
       .catch((er) => {
@@ -141,10 +138,7 @@ export function AuthProvider({ children }: IClientProviders) {
       .post<IContactResponse>("/contact", data)
       .then((res) => {
         if (res.data) {
-          setTimeout(() => {
-            console.log("Contato adicionado com sucesso!");
-            ContactAdd();
-          }, 3000);
+          ContactAdd();
         }
       })
       .catch((er) => {
@@ -169,10 +163,7 @@ export function AuthProvider({ children }: IClientProviders) {
           .patch<IContactResponse>(`/contact/${idContact}`, dataUpdate)
           .then((res) => {
             if (res.data) {
-              setTimeout(() => {
-                console.log("Contato atualizado com sucesso!");
-                EditContactSuccess();
-              }, 3000);
+              EditContactSuccess();
             }
           });
       } catch (er) {
@@ -198,10 +189,7 @@ export function AuthProvider({ children }: IClientProviders) {
           .patch<IContactResponse>(`/client/${client?.id}`, dataUpdate)
           .then((res) => {
             if (res.data) {
-              setTimeout(() => {
-                console.log("Client atualizado com sucesso!");
-                EditClientSuccess();
-              }, 3000);
+              EditClientSuccess();
             }
           });
       } catch (er) {

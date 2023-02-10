@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import FormClienttEdit from "../components/FormClientEdit";
 import FormContact from "../components/FormContact";
 import FormContactEdit from "../components/FormContactEdit";
-import { AuthContext, IContactResponse } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import { MainClient } from "./style";
 const Client = () => {
   const {
