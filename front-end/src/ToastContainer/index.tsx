@@ -62,8 +62,8 @@ export const RegisterError = () => {
   });
 };
 
-export const ProductAdd = () => {
-  toast.success("Produto adicionado!", {
+export const ContactAdd = () => {
+  toast.success("Contato adicionado!", {
     position: "top-right",
     hideProgressBar: false,
     autoClose: 2000,
@@ -72,7 +72,7 @@ export const ProductAdd = () => {
     draggable: false,
   });
 };
-export const ProductAddNegative = () => {
+export const ContactAddNegative = () => {
   toast.error("Falha ao adicionar produto!", {
     position: "top-right",
     hideProgressBar: false,
@@ -83,7 +83,7 @@ export const ProductAddNegative = () => {
   });
 };
 
-export const EditProductSuccess = () => {
+export const EditContactSuccess = () => {
   toast.success("Produto editado!", {
     position: "top-right",
     hideProgressBar: false,
@@ -93,7 +93,7 @@ export const EditProductSuccess = () => {
     draggable: false,
   });
 };
-export const EditProductError = () => {
+export const EditContactError = () => {
   toast.error("Falha ao editar produto!", {
     position: "top-right",
     hideProgressBar: false,
@@ -103,7 +103,7 @@ export const EditProductError = () => {
     draggable: false,
   });
 };
-export const deleteProductSuccess = () => {
+export const deleteContactSuccess = () => {
   toast.success("Produto excluido!", {
     position: "top-right",
     hideProgressBar: false,

@@ -1,13 +1,13 @@
 import FormLogin from "../components/FormLogin";
 import FormRegister from "../components/FormRegister";
-import { MainTag } from "./style";
+import { MainDashboard } from "./style";
 
 const Dashboard = () => {
   return (
-    <MainTag>
+    <MainDashboard>
       <FormLogin />
       <FormRegister />
-    </MainTag>
+    </MainDashboard>
   );
 };
 
